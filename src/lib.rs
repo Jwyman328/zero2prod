@@ -15,7 +15,7 @@ async fn health_check(_req: HttpRequest) -> impl Responder {
 }
 
 async fn sign_up_for_newsletter(info: web::Form<Info>) -> impl Responder {
-    println!("we have good data name {}", info.name);
+    println!("we have good data name {} {}", info.name, info.email);
     HttpResponse::Ok()
 }
 

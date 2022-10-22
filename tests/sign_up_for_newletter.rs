@@ -1,9 +1,4 @@
-use std::net::TcpListener;
-
-use actix_web::dev::Server;
 use reqwest;
-use tokio;
-use zero2prod::run;
 use zero2prod::test_utils::helpers::spawn_app;
 
 #[actix_rt::test]

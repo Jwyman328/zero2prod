@@ -1,7 +1,6 @@
 use std::net::TcpListener;
 
 use crate::run;
-use actix_web::dev::Server;
 use tokio;
 
 pub fn spawn_app() -> std::net::SocketAddr {
