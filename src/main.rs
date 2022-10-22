@@ -1,11 +1,8 @@
-fn main() {
-    println!("Hello, world! 3");
-}
+use std::net::TcpListener;
+use zero2prod::run;
 
-#[cfg(test)]
-pub mod test {
-    #[test]
-    fn test_add() {
-        assert_eq!(1 + 1, 2)
-    }
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    let tcpListener = TcpListener::bind("127.0.0.1:8000").expect("error binding with TcpListener");
+    run(tcpListener)?.await
 }
