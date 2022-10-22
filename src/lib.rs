@@ -2,6 +2,7 @@ use std::net::TcpListener;
 
 use actix_web::{dev::Server, web, App, HttpRequest, HttpResponse, HttpServer, Responder};
 use serde::Deserialize;
+pub mod test_utils;
 
 #[derive(Deserialize)]
 struct Info {
