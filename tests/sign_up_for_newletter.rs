@@ -9,7 +9,7 @@ async fn sign_up_for_newletter_works_when_name_and_email_supplied() {
 
     //Act
     let response = client
-        .post(format!("http://{}/sign_up_for_newsletter", tcp_port))
+        .post(format!("http://{}/subscribe", tcp_port))
         .header("Content-Type", "application/x-www-form-urlencoded")
         .body("name=le%20guin&email=ursula_le_guin%40gmail.com")
         .send()
@@ -17,7 +17,7 @@ async fn sign_up_for_newletter_works_when_name_and_email_supplied() {
         .expect("Failed to execute request");
 
     assert!(response.status().is_success());
-    assert_eq!(Some(0), response.content_length());
+    assert_eq!(response.status().as_u16(), 200);
 }
 
 #[actix_rt::test]
@@ -28,7 +28,7 @@ async fn sign_up_returns_400_when_name_not_supplied() {
 
     //Act
     let response = client
-        .post(format!("http://{}/sign_up_for_newsletter", tcp_port))
+        .post(format!("http://{}/subscribe", tcp_port))
         .header("Content-Type", "application/x-www-form-urlencoded")
         .body("email=ursula_le_guin%40gmail.com")
         .send()
@@ -46,7 +46,7 @@ async fn sign_up_returns_400_when_email_not_supplied() {
 
     //Act
     let response = client
-        .post(format!("http://{}/sign_up_for_newsletter", tcp_port))
+        .post(format!("http://{}/subscribe", tcp_port))
         .header("Content-Type", "application/x-www-form-urlencoded")
         .body("name=le%20guin")
         .send()
